@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MVC;
+namespace MVC\Example1;
 
 
 use ArrayObject;
@@ -13,25 +13,29 @@ class View
      * @var Model
      */
     private $model;
+    /**
+     * @var string
+     */
+    private $file;
 
     /**
      * View constructor.
      * @param Model $model
+     * @param string $file
      */
-    public function __construct(Model $model)
+    public function __construct(string $file, Model $model)
     {
         $this->model = $model;
+        $this->file = $file;
     }
 
     /**
      * Assign model to a view file
-     * @param $file
      * @return string
      */
-    public function process($file): string
+    public function render(): string
     {
-        $file = $this->resolve($file);
-
+        $file = $this->resolve($this->file);
         return $this->capture($file, $this->model);
     }
 

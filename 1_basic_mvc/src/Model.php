@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MVC;
+namespace MVC\Example1;
 
 class Model
 {
