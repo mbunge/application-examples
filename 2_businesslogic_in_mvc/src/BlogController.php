@@ -26,7 +26,7 @@ class BlogController
      *
      * @return Response
      */
-    public function getPost(Input $input): Response
+    public function getPost(Input $request): Response
     {
         // get input data
         $data = $request->getInput();
