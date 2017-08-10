@@ -1,5 +1,5 @@
 <?php
 
-$controller = new \MVC\Example2\BlogController();
+$controller = new \Application\Domain\User\BlogController();
 $controller->handle();
 exit;

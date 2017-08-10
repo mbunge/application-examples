@@ -1,12 +1,12 @@
 <?php
 
 
-namespace MVC\Example2;
+namespace Application\Http\Controllers;
 
-use MVC\Example1\View;
-use MVC\Example2\DataSource\DataSource;
-use MVC\Example2\Domain\User\PostRepository;
-use MVC\Example2\Domain\User\PostService;
+use Application\Domain\User\PostRepository;
+use Application\Domain\User\PostService;
+use Application\Presentation;
+use Application\Presentation\Presenters\PostPresenter;
 
 class BlogController
 {
@@ -26,7 +26,7 @@ class BlogController
      *
      * @return Response
      */
-    public function getPost(Input $request): Response
+    public function getPost(Request $request): Response
     {
         // get input data
         $data = $request->getInput();
@@ -34,13 +34,13 @@ class BlogController
         // recognize domain model
         $model = $this->postService->loadPost($data['identifier']);
 
-        // build view for http model
-        // domain model could also converted to a view model
-        $view = new View('blog/default', $model);
+        // build presentation
+        $presenter = new PostPresenter(new Presentation\PostPresentationModel($model, $request));
+        $presentationModel = $presenter->present();
 
         // build http response
         $response = new Response();
-        $response->getBody()->write($view->render());
+        $response->getBody()->write($presentationModel->getOutput());
 
         return $response;
     }

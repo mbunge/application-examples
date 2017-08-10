@@ -1,12 +1,13 @@
 <?php
 
 
-namespace MVC\Example2\Domain\User;
+namespace Application\Domain\User;
 
 
-use MVC\Example2\DataSource\DataSource;
+use Application\Domain\User\DataSource\DataSource;
+use Application\Domain\Repository;
 
-class PostRepository
+class PostRepository implements Repository
 {
     /**
      * @var DataSource

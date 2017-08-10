@@ -1,12 +1,11 @@
 <?php
 
 
-namespace MVC\Example2\Domain\User;
+namespace Application\Domain\User;
 
-use MVC\Example1\Model;
-use MVC\Example2\DataSource\Record;
+use Application\Domain\DomainModel;
 
-class PostModel
+class PostModel implements DomainModel
 {
     /**
      * @var string
@@ -53,18 +52,6 @@ class PostModel
     public function setContent(string $content)
     {
         $this->content = $content;
-    }
-
-    /**
-     * Get keywords from kmeans clusterer
-     * @return array
-     */
-    public function getKeywords(): array
-    {
-        $kMeans = new KMeans(2);
-        $vectorizer = new StringVectorize();
-        $samples = $vectorizer->vectorize($this->getContent());
-        return $kMeans->cluster($samples);
     }
 
     /**

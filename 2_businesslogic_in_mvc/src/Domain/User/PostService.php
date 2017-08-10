@@ -1,10 +1,12 @@
 <?php
 
 
-namespace MVC\Example2\Domain\User;
+namespace Application\Domain\User;
 
 
-class PostService
+use Application\Domain\DomainService;
+
+class PostService implements DomainService
 {
     /**
      * @var PostRepository
